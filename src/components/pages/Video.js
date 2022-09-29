@@ -4,6 +4,8 @@ import Player from "../video/Player";
 import RelatedVideos from "../video/related/RelatedVideos";
 import PlayerLoader from '../../components/ui/loaders/PlayerLoader'
 import DiscriptionLoader from "../../components/ui/loaders/DescriptionLoader";
+import RelatedVideoLoader from "../../components/ui/loaders/RelatedVideoLoader";
+
 
 import Error from "../ui/Error";
 import { useParams } from "react-router-dom";
@@ -38,6 +40,21 @@ export default function Video() {
       );
     }
 
+
+    let relatedContent = null;
+
+    if(isLoading){
+        relatedContent = <RelatedVideoLoader />
+    }
+
+    if(!isLoading && isError){
+        relatedContent = <Error />
+    }
+
+     if (!isLoading && !isError && video?.id) {
+       relatedContent = <RelatedVideos id={video.id} title={video.title} />;
+     }
+
     return (
         <section className="pt-6 pb-20 min-h-[calc(100vh_-_157px)]">
             <div className="mx-auto max-w-7xl px-2 pb-20 min-h-[400px]">
@@ -46,7 +63,7 @@ export default function Video() {
                         {content}
                     </div>
 
-                    <RelatedVideos />
+                    {relatedContent}
                 </div>
             </div>
         </section>
