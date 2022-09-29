@@ -10,17 +10,10 @@ export default function Videos() {
     let content = null;
 
     if(isLoading){
-        content = (
-          <>
-            <VideoLoader />
-            <VideoLoader />
-            <VideoLoader />
-            <VideoLoader />
-            <VideoLoader />
-            <VideoLoader />
-            <VideoLoader />
-          </>
-        );
+
+        content = 
+            [1,2,3,4,5,6,7,8].map((i) => <VideoLoader key={i}/>)
+
     }
 
     if(!isLoading && isError){
