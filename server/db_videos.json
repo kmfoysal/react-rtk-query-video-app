@@ -87,6 +87,17 @@
       "duration": "9:44",
       "views": "3.2k",
       "id": 8
+    },
+    {
+      "title": "Redux For Beginners | Redux Tutorial with Redux Toolkit",
+      "author": "Lama",
+      "description": " Beginner Redux tutorial using Redux Toolkit. Learn React Redux from scratch using real-world examples of Redux hooks, Redux Thunk, and learn why and when we should use Redux.",
+      "link": "https://www.youtube.com/embed/DYtYyFOfpBY",
+      "thumbnail": "https://i.ytimg.com/vi/DYtYyFOfpBY/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCLNvSMiKDkxQbewMA3OobjsvCDYA",
+      "date": "Sep 30, 2022",
+      "duration": "10:22",
+      "views": "5.2K",
+      "id": 9
     }
   ]
 }

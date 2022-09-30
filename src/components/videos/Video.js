@@ -10,11 +10,7 @@ export default function Video({ video }) {
       <div className="w-full flex flex-col">
         <div className="relative">
           <Link to={`/videos/${id}`}>
-            <img
-              src={thumbnail}
-              className="w-full h-auto"
-              alt={title}
-            />
+            <img src={thumbnail} className="w-full h-auto" alt={title} />
           </Link>
 
           <p className="absolute right-2 bottom-2 bg-gray-900 text-gray-100 text-xs px-1 py">
@@ -30,15 +26,15 @@ export default function Video({ video }) {
           />
 
           <div clas="flex flex-col">
-            <Link to="/videos/1">
-              <p className="text-slate-900 text-sm font-semibold">
-                {title}
-              </p>
+            <Link to={`/videos/${id}`}>
+              <p className="text-slate-900 text-sm font-semibold">{title}</p>
             </Link>
             <span className="text-gray-400 text-xs hover:text-gray-600">
               {author}
             </span>
-            <p className="text-gray-400 text-xs">{views} views . {date}</p>
+            <p className="text-gray-400 text-xs">
+              {views} views . {date}
+            </p>
           </div>
         </div>
       </div>
