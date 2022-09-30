@@ -14,18 +14,24 @@ export const apiSlice = createApi({
       query: (vidioId) => `/videos/${vidioId}`,
     }),
     getRelatedVideos: builder.query({
-      query:({id, title}) => {
+      query: ({ id, title }) => {
+        const tags = title.split(" ");
 
-        const tags = title.split(' ');
-
-        const relatedTags = tags.map(tag => `title_like=${tag}`);
+        const relatedTags = tags.map((tag) => `title_like=${tag}`);
 
         const queryString = `/videos?${relatedTags.join("&")}&_limit=4`;
 
         return queryString;
-      }
-    })
+      },
+    }),
+    addVideo: builder.mutation({
+      query: (data) => ({
+        url: '/videos',
+        method: 'POST',
+        body: data
+      }),
+    }),
   }),
 });
 
-export const {useGetVideosQuery, useGetSingleVideoQuery, useGetRelatedVideosQuery} = apiSlice;
+export const {useGetVideosQuery, useGetSingleVideoQuery, useGetRelatedVideosQuery, useAddVideoMutation} = apiSlice;
