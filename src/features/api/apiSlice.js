@@ -6,17 +6,22 @@ export const apiSlice = createApi({
     baseUrl: "http://localhost:9000",
   }),
 
-  tagTypes: ["Videos"],
+  tagTypes: ["Videos", "Video", "RelatedVideos"],
 
   endpoints: (builder) => ({
+
     getVideos: builder.query({
       query: () => "/videos",
       keepUnusedDataFor: 500,
-      providesTags: ["Videos"]
+      providesTags: ["Videos"],
     }),
+
     getSingleVideo: builder.query({
       query: (vidioId) => `/videos/${vidioId}`,
+
+      providesTags: (result, error, arg) => [{ type: "Video", id: arg }],
     }),
+
     getRelatedVideos: builder.query({
       query: ({ id, title }) => {
         const tags = title.split(" ");
@@ -27,16 +32,31 @@ export const apiSlice = createApi({
 
         return queryString;
       },
+      providesTags: (result, error, arg) => [{ type: "Video", id: arg.id }],
     }),
+
     addVideo: builder.mutation({
       query: (data) => ({
-        url: '/videos',
-        method: 'POST',
-        body: data
+        url: "/videos",
+        method: "POST",
+        body: data,
       }),
-      invalidatesTags: ["Videos"]
+      invalidatesTags: ["Videos"],
+    }),
+
+    editVideo: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/videos/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Videos",
+        { type: "Video", id: arg.id },
+        { type: "RelatedVideos", id: arg.id },
+      ],
     }),
   }),
 });
 
-export const {useGetVideosQuery, useGetSingleVideoQuery, useGetRelatedVideosQuery, useAddVideoMutation} = apiSlice;
+export const {useGetVideosQuery, useGetSingleVideoQuery, useGetRelatedVideosQuery, useAddVideoMutation, useEditVideoMutation} = apiSlice;
