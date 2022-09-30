@@ -9,7 +9,6 @@ export const apiSlice = createApi({
   tagTypes: ["Videos", "Video", "RelatedVideos"],
 
   endpoints: (builder) => ({
-
     getVideos: builder.query({
       query: () => "/videos",
       keepUnusedDataFor: 500,
@@ -56,7 +55,15 @@ export const apiSlice = createApi({
         { type: "RelatedVideos", id: arg.id },
       ],
     }),
+
+    deleteVideo: builder.mutation({
+      query: (id) => ({
+        url: `/videos/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags:  [ "Videos"],
+    }),
   }),
 });
 
-export const {useGetVideosQuery, useGetSingleVideoQuery, useGetRelatedVideosQuery, useAddVideoMutation, useEditVideoMutation} = apiSlice;
+export const {useGetVideosQuery, useGetSingleVideoQuery, useGetRelatedVideosQuery, useAddVideoMutation, useEditVideoMutation, useDeleteVideoMutation} = apiSlice;

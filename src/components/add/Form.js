@@ -10,7 +10,7 @@ import Error from "../ui/Error";
 
 export default function Form() {
 
-    const [addVideo, {data: video, isLoading, isSuccess, isError}] = useAddVideoMutation();
+    const [addVideo, {isLoading, isSuccess, isError}] = useAddVideoMutation();
 
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState("");
